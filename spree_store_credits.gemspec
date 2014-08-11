@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_store_credits'
-  s.version     = '2.2.2'
+  s.version     = '2.3.1'
   s.summary     = 'Store credit as a payment method'
   s.description = 'Enables associating store credit to a user and using the store credit as a form of payment during checkout.'
   s.required_ruby_version = '>= 2.1.0'
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree', '2.2.2'
+  s.add_dependency 'spree', '~> 2.3.1'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'coffee-rails'
