@@ -1,8 +1,7 @@
 module SpreeStoreCredits::PaymentMethodDecorator
-  extend ActiveSupport::Concern
 
-  included do
-    prepend(InstanceMethods)
+  def self.included(base)
+    base.prepend(InstanceMethods)
   end
 
   module InstanceMethods

@@ -1,12 +1,10 @@
 module SpreeStoreCredits::PaymentDecorator
-  extend ActiveSupport::Concern
-
-  included do
-    delegate :store_credit?, to: :payment_method
-    scope :store_credits, -> { where(source_type: Spree::StoreCredit.to_s) }
-    scope :not_store_credits, -> { where(arel_table[:source_type].not_eq(Spree::StoreCredit.to_s).or(arel_table[:source_type].eq(nil))) }
-    after_create :create_eligible_credit_event
-    prepend(InstanceMethods)
+  def self.included(base)
+    base.delegate :store_credit?, to: :payment_method
+    base.scope :store_credits, -> { where(source_type: Spree::StoreCredit.to_s) }
+    base.scope :not_store_credits, -> { where(arel_table[:source_type].not_eq(Spree::StoreCredit.to_s).or(arel_table[:source_type].eq(nil))) }
+    base.after_create :create_eligible_credit_event
+    base.prepend(InstanceMethods)
   end
 
   module InstanceMethods
