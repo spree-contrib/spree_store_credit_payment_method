@@ -1,11 +1,9 @@
 module SpreeStoreCredits::OrderDecorator
-  extend ActiveSupport::Concern
+  def self.included(base)
+    base.state_machine.before_transition to: :confirm, do: :add_store_credit_payments
+    base.state_machine.after_transition to: :confirm, do: :create_gift_cards
 
-  included do
-    Spree::Order.state_machine.before_transition to: :confirm, do: :add_store_credit_payments
-    Spree::Order.state_machine.after_transition to: :confirm, do: :create_gift_cards
-
-    prepend(InstanceMethods)
+    base.prepend(InstanceMethods)
   end
 
   module InstanceMethods
