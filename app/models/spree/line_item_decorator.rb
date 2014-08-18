@@ -1,10 +1,8 @@
 module Spree::LineItemDecorator
-  extend ActiveSupport::Concern
-
-  included do
-    has_many :gift_cards, class_name: Spree::VirtualGiftCard
-    delegate :gift_card?, :gift_card, to: :product
-    prepend(InstanceMethods)
+  def self.included(base)
+    base.has_many :gift_cards, class_name: Spree::VirtualGiftCard
+    base.delegate :gift_card?, :gift_card, to: :product
+    base.prepend(InstanceMethods)
   end
 
   module InstanceMethods
