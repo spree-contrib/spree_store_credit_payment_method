@@ -1,9 +1,11 @@
 module Spree::UserDecorator
-  def self.included(base)
-    base.has_many :store_credits, -> { includes(:credit_type) }
-    base.has_many :store_credit_events, through: :store_credits
+  extend ActiveSupport::Concern
 
-    base.prepend(InstanceMethods)
+  included do
+    has_many :store_credits, -> { includes(:credit_type) }
+    has_many :store_credit_events, through: :store_credits
+
+    prepend(InstanceMethods)
   end
 
   module InstanceMethods
