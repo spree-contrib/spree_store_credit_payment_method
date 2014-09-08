@@ -29,7 +29,7 @@ Installation
 Add spree_store_credits to your Gemfile:
 
 ```ruby
-gem 'spree_store_credits'
+gem 'spree_store_credits', github: 'spree-contrib/spree_store_credit_payment_method'
 ```
 
 Bundle your dependencies and run the installation generator:
